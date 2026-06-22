@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>信息索引 · leyu 资料整理页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f9fafb;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1e293b;
+      padding: 0 1.2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .page-wrap {
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 0 2rem;
+      flex: 1;
+    }
+
+    /* hero 区 */
+    .hero {
+      text-align: center;
+      padding: 2.8rem 0 2rem;
+      border-bottom: 1px solid #e9edf2;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #64748b;
+      font-weight: 380;
+      max-width: 500px;
+      margin: 0.6rem auto 1.2rem;
+    }
+
+    .hero .meta-note {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      background: #f1f5f9;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+    }
+
+    /* 通用标题层级 */
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 440;
+      color: #0f172a;
+      margin: 2.4rem 0 1rem;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin: 1.8rem 0 0.5rem;
+      color: #1e293b;
+    }
+
+    p {
+      margin: 0.8rem 0 1.2rem;
+      color: #334155;
+      font-size: 1rem;
+    }
+
+    /* 优势区卡片模式 */
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .card-item {
+      flex: 1 1 200px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem 1.2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 2px 8px rgba(0,0,0,0.02);
+      border: 1px solid #edf2f7;
+    }
+
+    .card-item strong {
+      display: block;
+      font-weight: 500;
+      font-size: 1.05rem;
+      color: #0f172a;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-item span {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    /* 说明区 + 场景 */
+    .highlight-box {
+      background: #f8fafc;
+      border-left: 3px solid #b9c9da;
+      padding: 1rem 1.6rem;
+      border-radius: 0 12px 12px 0;
+      margin: 1.2rem 0;
+    }
+
+    .highlight-box p {
+      margin: 0.4rem 0;
+    }
+
+    .scenario-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    .scenario-list li {
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      color: #334155;
+    }
+
+    .scenario-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #94a3b8;
+    }
+
+    /* FAQ 摘要 */
+    .faq-preview {
+      background: #ffffff;
+      border: 1px solid #e9edf2;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin: 2rem 0 1.8rem;
+    }
+
+    .faq-preview details {
+      margin: 0.6rem 0;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 0.6rem;
+    }
+
+    .faq-preview details:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-preview summary {
+      font-weight: 430;
+      cursor: pointer;
+      color: #1e293b;
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .faq-preview summary::-webkit-details-marker {
+      color: #94a3b8;
+    }
+
+    .faq-preview details p {
+      margin: 0.5rem 0 0 0.2rem;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    /* 底部链接区 */
+    .footer-links {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      font-size: 0.92rem;
+    }
+
+    .footer-links a {
+      color: #1e293b;
+      text-decoration: none;
+      border-bottom: 1px dotted #94a3b8;
+      transition: border-color 0.15s;
+    }
+
+    .footer-links a:hover {
+      border-bottom: 1px solid #0f172a;
+    }
+
+    .copyright {
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 540px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .cards-grid {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .card-item {
+        flex: 1 1 100%;
+      }
+      .faq-preview {
+        padding: 1rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- HERO 区 -->
+    <header class="hero">
+      <h1>索引 · 整理</h1>
+      <p class="sub">从信息聚合的角度重新理解 <strong style="font-weight:500;">leyu</strong> 的结构与调性</p>
+      <span class="meta-note">基于公开资料 · 内容式索引页</span>
+    </header>
+
+    <!-- 优势区（从信息整理切入） -->
+    <section>
+      <h2>为什么以「整理」作为入口</h2>
+      <p>面对一个功能型站点，信息层级与导航密度往往决定了使用效率。以下是从资料梳理中提取的三项结构特征，它们共同构成了 <a href="https://portal1-leyu.com" style="color:#1d4ed8; text-decoration: underline; text-underline-offset: 2px;">leyu</a> 的页面骨架。</p>
+      <div class="cards-grid">
+        <div class="card-item">
+          <strong>模块化分区</strong>
+          <span>各板块内容独立成块，通过清晰的标题与留白引导视线流动，减少认知负荷。</span>
+        </div>
+        <div class="card-item">
+          <strong>纵向叙事节奏</strong>
+          <span>从概括到细节，段落之间设置过渡句，信息排布符合“先总览后局部”的阅读习惯。</span>
+        </div>
+        <div class="card-item">
+          <strong>低噪点视觉</strong>
+          <span>极简配色与克制的高亮，让操作路径与文本内容保持主次分明的层级关系。</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 说明区（知识型承接） -->
+    <section>
+      <h2>说明 · 资料索引的边界</h2>
+      <div class="highlight-box">
+        <p>本页并非官方说明，而是基于公开可触达的结构所生成的信息地图。所有引用均以中立视角展开，不涉及对服务或内容的实质性评价。</p>
+        <p>作为索引页，我们关注的是：<strong>信息分类方式</strong>、<strong>内容密度控制</strong>，以及<strong>链接的自然嵌入</strong>——例如，你可以在句子中直接遇到 <a href="https://portal1-leyu.com" style="color:#1d4ed8; text-decoration: underline; text-underline-offset: 2px;">leyu</a> 的文本锚点，它并不突兀，而是句意的一部分。</p>
+      </div>
+      <p style="font-size:0.95rem; color:#475569;">这种处理方式与资料整理的原则一致：将链接作为信息流中的节点，而非独立的行动号召。</p>
+    </section>
+
+    <!-- 场景区块 -->
+    <section>
+      <h2>典型的使用场景</h2>
+      <p>以下场景来源于对导航结构与用户常见路径的归纳，可作为内容规划时的参考框架。</p>
+      <ul class="scenario-list">
+        <li>浏览板块总览，快速判断内容是否与当前需求匹配</li>
+        <li>通过固定栏目定位信息层级，减少反复跳转</li>
+        <li>在索引页中直接引用 <a href="https://portal1-leyu.com" style="color:#1d4ed8; text-decoration: underline; text-underline-offset: 2px;">leyu</a> 作为资料出处或延伸链接</li>
+        <li>借助分类标签对相似内容进行纵向对比</li>
+      </ul>
+      <p>这些场景均建立在“整理优先”的理念之上——先看清结构，再决定下一步。</p>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section>
+      <h2>FAQ 摘要 · 关于索引本身</h2>
+      <div class="faq-preview">
+        <details open>
+          <summary>这个页面是官方文档吗？</summary>
+          <p>不是。本页是围绕公开结构制作的内容式索引，侧重于信息组织和知识呈现方式，不替代任何官方说明或服务。</p>
+        </details>
+        <details>
+          <summary>为什么链接文本只写“leyu”？</summary>
+          <p>为了保持文本的自然流动。链接作为句子成分出现时，不应附加操作指令。例如：“你可以参考 <a href="https://portal1-leyu.com" style="color:#1d4ed8; text-decoration: underline; text-underline-offset: 2px;">leyu</a> 的板块设计”比“点击进入leyu”更符合资料型页面的语境。</p>
+        </details>
+        <details>
+          <summary>索引内容会更新吗？</summary>
+          <p>本文仅反映当前观察到的结构与表达方式，如需获取最新信息，建议直接访问原站点。</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+      <div>
+        <span>结构参考：</span>
+        <a href="https://portal1-leyu.com">leyu</a>
+      </div>
+      <div class="copyright">
+        <span>资料索引 · 非官方页面</span>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
